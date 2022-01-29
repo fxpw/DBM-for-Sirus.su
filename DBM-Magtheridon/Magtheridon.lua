@@ -11,7 +11,7 @@ mod:RegisterEvents(
 	"SPELL_AURA_APPLIED",
 	"UNIT_HEALTH"
 )
-
+--гер--
 local warningNovaCast               = mod:NewCastAnnounce(305129, 10) -- Вспышка скверны
 local warnHandOfMagt			    = mod:NewSpellAnnounce(305131, 1) -- Печать
 local warnDevastatingStrike		    = mod:NewSpellAnnounce(305134, 3, nil, "Tank|Healer") -- сокрушительный удар
@@ -21,7 +21,6 @@ local warnPhase2     				= mod:NewPhaseAnnounce(2)
 local specWarnNova                  = mod:NewSpecialWarningRun(305129, nil, nil, nil, 1, 2) -- Вспышка скверны
 local specWarnHandOfMagt            = mod:NewSpecialWarningSpell(305131, nil, nil, nil, 1, 2) -- Печать
 local specWarnDevastatingStrike	    = mod:NewSpecialWarningTarget(305134, "Tank", nil, nil, nil, 1, 2)
-
 
 local timerNovaCD                   = mod:NewCDTimer(80, 305129, nil, nil, nil, 3) -- Кубы
 local timerShakeCD                  = mod:NewCDTimer(50, 30572, nil, nil, nil, 3) -- Сотрясение
