@@ -42,6 +42,7 @@ local function buildGuidTable(self)
 end
 
 function mod:OnCombatStart(delay)
+	DBM:FireCustomEvent("DBM_EncounterStart", 33113, "FlameLeviathan")
 	self.vb.WardofLifeCount = 0
 	buildGuidTable(self)
 	if mod:IsDifficulty("heroic10") then
@@ -52,6 +53,7 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:OnCombatEnd(wipe)
+	DBM:FireCustomEvent("DBM_EncounterEnd", 33113, "FlameLeviathan", wipe)
 	timerWardofLife:Cancel()
 	timerPursued:Cancel()
 end

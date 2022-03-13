@@ -56,6 +56,7 @@ local function armReset(self)
 end
 
 function mod:OnCombatStart(delay)
+	DBM:FireCustomEvent("DBM_EncounterStart", 32930, "Kologarn")
 	timerNextShockwave:Start(15.7)
 	timerNextSmash:Start(10-delay)
 	timerNextEyebeam:Start(11-delay)
@@ -63,6 +64,7 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:OnCombatEnd(wipe)
+	DBM:FireCustomEvent("DBM_EncounterEnd", 32930, "Kologarn", wipe)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)

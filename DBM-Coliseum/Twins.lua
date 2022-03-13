@@ -30,12 +30,12 @@ local specWarnPoweroftheTwins		= mod:NewSpecialWarning("SpecWarnPoweroftheTwins"
 local specWarnEmpoweredDarkness		= mod:NewSpecialWarningYou(67215)
 local specWarnEmpoweredLight		= mod:NewSpecialWarningYou(67218)
 
-local enrageTimer					= mod:NewBerserkTimer(360)
+local enrageTimer					= mod:NewBerserkTimer(360)				-- нужен ли он вообще? мне кажется берсу тут никто не видел =)
 local timerSpecial					= mod:NewTimer(45, "TimerSpecialSpell", "Interface\\Icons\\INV_Enchant_EssenceMagicLarge")
 local timerHeal						= mod:NewCastTimer(15, 65875)
 local timerLightTouch				= mod:NewTargetTimer(20, 67298)
 local timerDarkTouch				= mod:NewTargetTimer(20, 67283)
-local timerAchieve					= mod:NewAchievementTimer(180, 3815, "TimerSpeedKill")
+
 
 mod:AddBoolOption("SpecialWarnOnDebuff", false, "announce")
 mod:AddBoolOption("SetIconOnDebuffTarget", true)
@@ -49,7 +49,6 @@ function mod:OnCombatStart(delay)
 	DBM:FireCustomEvent("DBM_EncounterStart", 34497, "The Twin Val'kyr")
 	timerSpecial:Start(-delay)
 	warnSpecial:Schedule(40-delay)
-	timerAchieve:Start(-delay)
 	if self:IsDifficulty("heroic10", "heroic25") then
 		enrageTimer:Start(360-delay)
 	else
@@ -62,8 +61,8 @@ function mod:OnCombatEnd(wipe)
 	DBM:FireCustomEvent("DBM_EncounterEnd", 34497, "The Twin Val'kyr", wipe)
 end
 
-local lightEssence = GetSpellInfo(67223)
-local darkEssence = GetSpellInfo(67176)
+local lightEssence = GetSpellInfo(67223) or GetSpellInfo(67222) or GetSpellInfo(67224) or GetSpellInfo(65686)
+local darkEssence = GetSpellInfo(67176) or GetSpellInfo(67177) or GetSpellInfo(67178) or GetSpellInfo(65684)
 
 function mod:SPELL_CAST_START(args)
 	if args:IsSpellID(66046, 67206, 67207, 67208) then 			-- Light Vortex
@@ -74,13 +73,15 @@ function mod:SPELL_CAST_START(args)
 		self:SpecialAbility(debuff)
 	elseif args:IsSpellID(65875, 67303, 67304, 67305) then 		-- Twin's Pact
 		timerHeal:Start()
-		self:SpecialAbility(true)
+		local debuff = UnitDebuff("player", darkEssence)
+		self:SpecialAbility(debuff)
 		if self:GetUnitCreatureId("target") == 34497 then	-- if lightbane, then switch to darkbane
 			specWarnSwitch:Show()
 		end
 	elseif args:IsSpellID(65876, 67306, 67307, 67308) then		-- Light Pact
 		timerHeal:Start()
-		self:SpecialAbility(true)
+		local debuff = UnitDebuff("player", lightEssence)
+		self:SpecialAbility(debuff)
 		if self:GetUnitCreatureId("target") == 34496 then	-- if darkbane, then switch to lightbane
 			specWarnSwitch:Show()
 		end

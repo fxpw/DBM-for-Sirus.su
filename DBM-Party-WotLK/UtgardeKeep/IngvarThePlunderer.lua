@@ -11,7 +11,8 @@ mod:RegisterKill("yell", L.YellCombatEnd)
 mod:RegisterEvents(
 	"SPELL_CAST_START",
 	"SPELL_AURA_APPLIED",
-	"SPELL_AURA_REMOVED"
+	"SPELL_AURA_REMOVED",
+	"SPELL_DAMAGE"
 )
 
 local warningSmash		= mod:NewSpellAnnounce(42723, 1)
@@ -22,6 +23,7 @@ local timerWoeStrike	= mod:NewTargetTimer(10, 42723)
 
 local specWarnSpelllock	= mod:NewSpecialWarningCast(42729)
 
+mod:AddBoolOption("Crash", true)
 
 function mod:SPELL_CAST_START(args)
 	if args:IsSpellID(42723, 42669, 59706) then
@@ -32,6 +34,12 @@ function mod:SPELL_CAST_START(args)
 	end
 	if args:IsSpellID(42729, 59734) then
 		specWarnSpelllock:Show()
+	end
+end
+
+function mod:SPELL_DAMAGE(args)
+	if args:IsPlayer() and (args:IsSpellID(59734)) then
+		SendChatMessage(L.YellDefile, "PARTY")
 	end
 end
 

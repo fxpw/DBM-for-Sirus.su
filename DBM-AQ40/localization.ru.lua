@@ -124,6 +124,13 @@ L:SetTimerLocalization{
 }
 L:SetOptionLocalization{
 	RangeFrame	= "Показывать окно дистанции"
+} 
+L:SetMiscLocalization{
+	Stomach		= "Живот",
+	Eye			= "Око К'Туна",
+	FleshTent	= "Мясистое щупальце",
+	Weakened 	= "ослаблен!",
+	NotValid	= "АК40 частично очищен. Осталось %s необязательных боссов."
 }
 ----------------
 -- Ouro --

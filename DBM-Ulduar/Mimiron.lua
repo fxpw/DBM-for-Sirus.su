@@ -85,6 +85,7 @@ local function warnNapalmShellTargets(self)
 end
 
 function mod:OnCombatStart(delay)
+	DBM:FireCustomEvent("DBM_EncounterStart", 33432, "Mimiron")
 	self.vb.phase = 0
 	self.vb.hardmode = false
 	enrage:Start(-delay)
@@ -106,6 +107,7 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:OnCombatEnd(wipe)
+	DBM:FireCustomEvent("DBM_EncounterEnd", 33432, "Mimiron", wipe)
 	DBM.BossHealth:Hide()
 	timerBombBotSpawn:Cancel()
 	self:UnscheduleMethod("BombBot")

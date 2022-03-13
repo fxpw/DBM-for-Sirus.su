@@ -51,7 +51,7 @@ end
 
 function mod:Whelps()
 	if self:IsInCombat() then
-		timerWhelps:Start()
+		timerWhelps:Start(102)
 		warnWhelpsSoon:Schedule(95)
 		self:ScheduleMethod(105, "Whelps")
 	end

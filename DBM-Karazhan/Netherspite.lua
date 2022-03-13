@@ -25,6 +25,7 @@ local specWarnVoid			= mod:NewSpecialWarningMove(30533)
 local timerPortalPhase		= mod:NewTimer(61.5, "timerPortalPhase", "Interface\\Icons\\Spell_Arcane_PortalIronForge")
 local timerBanishPhase		= mod:NewTimer(31, "timerBanishPhase", "Interface\\Icons\\Spell_Shadow_Cripple")
 local timerBreathCast		= mod:NewCastTimer(2.5, 38523)
+local timerVoid				= mod:NewTimer(15, "timerVoid", 37063)
 
 local timerGates            = mod:NewTimer(13, "TimerGates" ,305400)
 local timerGhostPhase       = mod:NewTimer(75, "TimerGhostPhase" ,305408)
@@ -35,7 +36,7 @@ local specWarnGates			= mod:NewSpecialWarningYou(305403)
 local warnGates			    = mod:NewTargetAnnounce(305403, 3)
 local timerBreatheCD        = mod:NewCDTimer(13, 305407)
 
-local warnSound						= mod:NewSoundAnnounce()
+local warnSound				= mod:NewSoundAnnounce()
 
 local berserkTimer			= mod:NewBerserkTimer(540)
 
@@ -48,11 +49,24 @@ function mod:OnCombatStart(delay)
 		berserkTimer:Start(-delay)
 		timerPortalPhase:Start(62-delay)
 		warningBanishSoon:Schedule(57-delay)
+		timerVoid:Start()
+		self:ScheduleMethod(15, "Void")
 	elseif mod:IsDifficulty("heroic10") then
 		timerGates:Start()
 		timerGhostPhase:Start()
 	end
 
+end
+
+function mod:Void()
+	timerVoid:Start()
+end
+function mod:Phase1()
+		timerBanishPhase:Cancel()
+		self:scheduleMethod(15, "Void")
+		warningPortal:Show()
+		timerPortalPhase:Start()
+		warningBanishSoon:Schedule(56.5)
 end
 
 function mod:OnCombatEnd(wipe)
@@ -64,8 +78,8 @@ function mod:SPELL_CAST_START(args)
 		warningBreathCast:Show()
 		timerBreathCast:Start()
 	elseif args:IsSpellID(305407) then
-		if self.vb.breatheCount < 4 then
-			timerBreatheCD:Show()
+		if self.vb.breatheCount < 4 then          
+			timerBreatheCD:Show(nil, self.vb.breatheCount +1)
 			self.vb.breatheCount = self.vb.breatheCount + 1
 		else
 			self.vb.breatheCount = 0
@@ -90,7 +104,6 @@ function mod:SPELL_AURA_APPLIED(args)
 			table.wipe(gatesTargets)
 		end
 	elseif args:IsSpellID(305408, 305409) then
-		warnSound:Play("run")
 		timerRepentance:Start()
 		timerPortals:Start()
 		timerNormalPhase:Start()
@@ -112,11 +125,16 @@ end
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(msg)
 	if msg == L.DBM_NS_EMOTE_PHASE_2 then
 		timerPortalPhase:Cancel()
+		self:scheduleMethod(31, "Phase1")
 		warningBanish:Show()
 		timerBanishPhase:Start()
+		timerPortalPhase:Schedule(31)
 		warningPortalSoon:Schedule(26)
+		timerVoid:Cancel()
+		self.vb.breatheCount = 0
 	elseif msg == L.DBM_NS_EMOTE_PHASE_1 then
 		timerBanishPhase:Cancel()
+		self:scheduleMethod(15, "Void")
 		warningPortal:Show()
 		timerPortalPhase:Start()
 		warningBanishSoon:Schedule(56.5)

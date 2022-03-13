@@ -21,29 +21,29 @@ mod:RegisterEvents(
 )
 
 
-local warnStrongBeat			= mod:NewStackAnnounce(310548, 1, nil, "Tank")
-local warnPoisonous				= mod:NewSpellAnnounce(310549, 4)
-local warnParalysis				= mod:NewSpellAnnounce(310555, 4)
-local warnMassiveShell			= mod:NewTargetAnnounce(310560, 2)
-local warnPowerfulShot			= mod:NewTargetAnnounce(310564, 4)
-local warnShrillScreech			= mod:NewSpellAnnounce(310566, 4)
-local warnCallGuardians			= mod:NewSpellAnnounce(310557, 4)
+local warnStrongBeat			= mod:NewStackAnnounce(310548, 1, nil, "Tank")	-- анонс для танков Могучий удар клешней
+local warnPoisonous				= mod:NewSpellAnnounce(310549, 4)	-- Ядовитая рвота
+local warnParalysis				= mod:NewSpellAnnounce(310555, 4)	-- Медленный паралич
+local warnMassiveShell			= mod:NewTargetAnnounce(310560, 2)	-- Массированный обстрел
+local warnPowerfulShot			= mod:NewTargetAnnounce(310564, 4)	-- Мощный выстрел
+local warnShrillScreech			= mod:NewSpellAnnounce(310566, 4)	-- Пронзительный визг
+local warnCallGuardians			= mod:NewSpellAnnounce(310557, 4)	-- Призыв охранителей
 
-local specWarnRippingThorn		= mod:NewSpecialWarningStack(310546, "Melee", 7)
-local specWarnPoisonousBlood	= mod:NewSpecialWarningStack(310547, "SpellCaster", 7)
-local specWarnStrongBeat		= mod:NewSpecialWarningYou(310548, nil, nil, nil, 2, 2)
-local specWarnPoisonous			= mod:NewSpecialWarningYou(310549, nil, nil, nil, 2, 2)
-local specwarnCallGuardians		= mod:NewSpecialWarningSwitch(310557, "Ranged|Tank", nil, nil, 1, 2)
-local specWarnShrillScreech		= mod:NewSpecialWarningYou(310566, nil, nil, nil, 2, 2)
+local specWarnRippingThorn		= mod:NewSpecialWarningStack(310546, "Melee", 7)	-- спец предупреждение Разрывающий шип
+local specWarnPoisonousBlood	= mod:NewSpecialWarningStack(310547, "SpellCaster", 7) -- спец предупреждение Ядовитая кровь
+local specWarnStrongBeat		= mod:NewSpecialWarningYou(310548, nil, nil, nil, 2, 2)	-- спец предупреждение Могучий удар клешней
+local specWarnPoisonous			= mod:NewSpecialWarningYou(310549, nil, nil, nil, 2, 2)	-- спец предупреждение Ядовитая рвота
+local specwarnCallGuardians		= mod:NewSpecialWarningSwitch(310557, "Ranged|Tank", nil, nil, 1, 2)	-- спец предупреждение Призыв охранителей
+local specWarnShrillScreech		= mod:NewSpecialWarningYou(310566, nil, nil, nil, 2, 2)	-- спец предупреждение Пронзительный визг
 
-local timerStrongBeat			= mod:NewBuffFadesTimer(30, 310548, nil, "Tank", nil, 5, nil, DBM_CORE_TANK_ICON)
-local timerPoisonous			= mod:NewBuffFadesTimer(30, 310549, nil, "Tank", nil, 5, nil, DBM_CORE_TANK_ICON)
-local timerShrillScreech		= mod:NewBuffFadesTimer(6, 310566, nil, nil, nil, 5, nil, DBM_CORE_INTERRUPT_ICON)
-local timerPoisonousCD			= mod:NewCDTimer(25, 310549, nil, nil, nil, 3, nil, DBM_CORE_TANK_ICON)
-local timerStrongBeatCD			= mod:NewCDTimer(25, 310548, nil, nil, nil, 3, nil, DBM_CORE_DEADLY_ICON)
-local timerCallGuardiansCD		= mod:NewNextTimer(45, 310557, nil, nil, nil, 1, nil, DBM_CORE_DAMAGE_ICON)
+local timerStrongBeat			= mod:NewBuffFadesTimer(30, 310548, nil, "Tank", nil, 5, nil, DBM_CORE_TANK_ICON) -- спадает Могучий удар клешней
+local timerPoisonous			= mod:NewBuffFadesTimer(30, 310549, nil, "Tank", nil, 5, nil, DBM_CORE_TANK_ICON)	-- спадает Ядовитая рвота
+local timerShrillScreech		= mod:NewBuffFadesTimer(6, 310566, nil, nil, nil, 5, nil, DBM_CORE_INTERRUPT_ICON)	-- спадает Пронзительный визг
+local timerPoisonousCD			= mod:NewCDTimer(25, 310549, nil, nil, nil, 3, nil, DBM_CORE_TANK_ICON)	-- таймер Ядовитая рвота
+local timerStrongBeatCD			= mod:NewCDTimer(25, 310548, nil, nil, nil, 3, nil, DBM_CORE_DEADLY_ICON)	-- таймер Могучий удар клешней
+local timerCallGuardiansCD		= mod:NewNextTimer(45, 310557, nil, nil, nil, 1, nil, DBM_CORE_DAMAGE_ICON)		-- Призыв охранителей
 
-local enrageTimer				= mod:NewBerserkTimer(750)
+local enrageTimer				= mod:NewBerserkTimer(750)	-- берсерк
 
 
 function mod:OnCombatStart(delay)
@@ -61,14 +61,14 @@ end
 
 function mod:SPELL_CAST_START(args)
 	local spellId = args.spellId
-    if spellId == 310566 then
+    if spellId == 310566 then	-- Пронзительный визг
 		warnShrillScreech:Show()
-    elseif spellId == 310549 then
+    elseif spellId == 310549 then	-- Ядовитая рвота
         warnPoisonous:Show()
         timerPoisonousCD:Start()
-    elseif spellId == 310564 or spellId == 310565 then
+    elseif spellId == 310564 or spellId == 310565 then	-- Мощный выстрел
 		warnPowerfulShot:Show(args.destName)
-    elseif spellId == 310557 then
+    elseif spellId == 310557 then	-- Призыв охранителей
         warnCallGuardians:Show()
 		specwarnCallGuardians:Show()
         timerCallGuardiansCD:Start()
@@ -77,7 +77,7 @@ end
 
 function mod:SPELL_AURA_APPLIED(args)
 	local spellId = args.spellId
-    if spellId == 310546 then
+    if spellId == 310546 then	-- Разрывающий шип
 		local amount = args.amount or 1
 		if amount >= 10 then
             if args:IsPlayer() then
@@ -85,7 +85,7 @@ function mod:SPELL_AURA_APPLIED(args)
 				specWarnRippingThorn:Play("stackhigh")
 			end
         end
-    elseif spellId == 310547 then
+    elseif spellId == 310547 then	-- Ядовитая кровь
 		local amount = args.amount or 1
 		if amount >= 10 then
             if args:IsPlayer() then
@@ -93,18 +93,18 @@ function mod:SPELL_AURA_APPLIED(args)
 				specWarnPoisonousBlood:Play("stackhigh")
 			end
         end
-    elseif spellId == 310548 then
+    elseif spellId == 310548 then	-- Могучий удар клешней
         warnStrongBeat:Show(args.destName, args.amount or 1)
         if args:IsPlayer() then
             specWarnStrongBeat:Show()
             timerStrongBeat:Start(args.destName)
         end
-    elseif spellId == 310549 then
+    elseif spellId == 310549 then	-- Ядовитая рвота
         timerPoisonous:Start(args.destName)
 		if args:IsPlayer() then
 			specWarnPoisonous:Show()
 		end
-	elseif spellId == 310566 then
+	elseif spellId == 310566 then	-- Пронзительный визг
 		timerShrillScreech:Start()
 		if args:IsPlayer() then
 			specWarnShrillScreech:Show()
@@ -114,7 +114,7 @@ end
 
 function mod:SPELL_CAST_SUCCESS(args)
 	local spellId = args.spellId
-    if spellId == 310548 then
+    if spellId == 310548 then	-- Могучий удар клешней
         timerStrongBeatCD:Start()
 	elseif spellId == 310560 or spellId == 310561 or spellId == 310562 or spellId == 310563 then
 		warnMassiveShell:Show()
@@ -123,11 +123,11 @@ end
 
 function mod:SPELL_AURA_REMOVED(args)
 	local spellId = args.spellId
-    if spellId == 310549 then
+    if spellId == 310549 then	-- Ядовитая рвота
         if args:IsPlayer() then
 		timerPoisonous:Cancel()
 		end
-    elseif spellId == 310548 then
+    elseif spellId == 310548 then	-- Могучий удар клешней
         if args:IsPlayer() then
 		timerStrongBeat:Cancel()
 		end

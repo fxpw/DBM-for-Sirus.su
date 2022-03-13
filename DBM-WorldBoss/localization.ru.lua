@@ -2,7 +2,7 @@ if GetLocale() ~= "ruRU" then return end
 
 local L
 
--- Doom Lord Kazzak
+-- Норигорн
 L = DBM:GetModLocalization("Norigorn")
 
 L:SetGeneralLocalization{

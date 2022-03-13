@@ -888,7 +888,8 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	YellCombatEnd	= "Нет! Я смогу это сделать… я смогу…"
+	YellCombatEnd	= "Нет! Я смогу это сделать… я смогу…",
+	YellDefile		= "урон нанесли по %s"
 })
 
 ------------------------

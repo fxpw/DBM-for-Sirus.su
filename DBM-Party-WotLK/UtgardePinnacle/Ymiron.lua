@@ -26,3 +26,8 @@ function mod:APELL_AURA_APPLIED(args)
 		timerScreams:Start()
 	end
 end
+function mod:SPELL_DAMAGE(args)
+	if args:IsPlayer() and (args:IsSpellID(48294)) then
+		SendChatMessage(L.YellDefile, "PARTY")
+	end
+end

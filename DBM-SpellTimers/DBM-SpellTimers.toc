@@ -1,6 +1,7 @@
 ## Interface: 30300
 ## Title:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff0055FFSpell Timers|r
 ## Notes: Creates bars for Long term cooldowns or durations
+## Notes-ruRU: Аддон, который использует таймеры DBM для отображения времени восстановления заклинаний участников рейда
 ## LoadOnDemand: 0
 ## RequiredDeps: DBM-Core
 ## DefaultState: enabled

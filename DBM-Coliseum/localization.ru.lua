@@ -19,11 +19,13 @@ L:SetMiscLocalization{
 	Gormok		= "Гормок Пронзающий Бивень",
 	Acidmaw		= "Кислотная Утроба",
 	Dreadscale	= "Жуткая Чешуя",
-	Icehowl		= "Ледяной Рев"
+	Icehowl		= "Ледяной Рев",
+	Rage		= "^%%s Охватывает кипящая ярость, и он растаптывает всех на своем пути!"
 }
 
 L:SetOptionLocalization{
 	WarningSnobold				= "Предупреждение о призыве Снобольда-вассала",
+	specWarnHardMove			= "Спец-предупреждение людей от тяжелого шага",
 	SpecialWarningImpale3		= "Спец-предупреждение для Прокалывания (>= 3 стаков)",
 	SpecialWarningAnger3		= "Спец-предупреждение для Вскипающего гнева (>=3 стаков)",
 	SpecialWarningSilence		= "Спец-предупреждение для Сотрясающего топота (безмолвие)",
@@ -37,7 +39,7 @@ L:SetOptionLocalization{
 	TimerNextBoss				= "Отсчет времени до появления следующего противника",
 	TimerCombatStart			= "Отсчет времени до начала битвы",
 	TimerEmerge					= "Отсчет времени до появления",
-	TimerSubmerge				= "Отсчет времени до зарывания",
+	TimerSubmerge				= "Отсчет времени до закапывания",
 	RangeFrame                  = "Показывать окно проверки дистанции в фазе 2",
 	IcehowlArrow				= "Показывать стрелку, когда Ледяной Рев готовится сделать рывок на цель рядом с вами"
 }
@@ -149,7 +151,7 @@ L:SetMiscLocalization{
 	Serissa				= "Серисса Мрачная Кропильщица <Чернокнижница>",-- 34474, Allience
 	Shocuul				= "Шокул <Воин>",				-- 34475, Allience
 	AllianceVictory		= "СЛАВА АЛЬЯНСУ!",
-	HordeVictory		= "That was just a taste of what the future brings. FOR THE HORDE!",
+	HordeVictory		= "Не щадите никого, герои Орды! ЛОК'ТАР ОГАР!",
 	YellKill			= "Пустая и горькая победа. После сегодняшних потерь мы стали слабее как целое. Кто еще, кроме Короля-лича, выиграет от подобной глупости? Пали великие воины. И ради чего? Истинная опасность еще впереди – нас ждет битва с  Королем-личом."
 }
 
@@ -176,7 +178,7 @@ L:SetWarningLocalization{
 	SpecWarnSwitchTarget		= "Смена цели",
 	SpecWarnKickNow				= "Прерывание",
 	WarningTouchDebuff			= "Отрицательный эффект на |3-5(>%s<)",
-	WarningPoweroftheTwins2		= "Сила близнецов - больше исцеления на |3-3(>%s<)",
+	WarningPoweroftheTwins		= "Сила близнецов - больше исцеления на >%s<",
 	SpecWarnPoweroftheTwins		= "Сила близнецов"
 }
 
@@ -191,11 +193,11 @@ L:SetOptionLocalization{
 	WarnSpecialSpellSoon		= "Предупреждение о следующуюей спец-способность",
 	SpecWarnSpecial				= "Спец-предупреждение для смены цветов",
 	SpecWarnSwitchTarget		= "Спец-предупреждение для других, когда босс читает заклинание",
-	SpecWarnKickNow				= "Спец-предупреждение, когда вы должы прервать заклинание",
+	SpecWarnKickNow				= "Спец-предупреждение, когда ВЫ должны прервать заклинание",
 	SpecialWarnOnDebuff			= "Спец-предупреждение, когда отрицательный эффект",
 	SetIconOnDebuffTarget		= "Установить метку на получившего отрицательный эффект (героический режим)",
 	WarningTouchDebuff			= "Объявлять цели, получившие отрицательный эффект",
-	WarningPoweroftheTwins2		= "Объявлять цель под воздействем Силы близнецов",
+	WarningPoweroftheTwins		= "Объявлять цель под воздействем Силы близнецов",
 	SpecWarnPoweroftheTwins		= "Спец-предупреждение, когда на вас Сила близнецов"
 }
 
@@ -229,25 +231,28 @@ L:SetMiscLocalization{
 	YellPull			= "Это место станет вашей могилой!",
 	Emerge				= "вылезает на поверхность!",
 	Burrow				= "зарывается в землю!",
+	YellBurrow			= "А вот и гости заявились, как и обещал господин.",
 	PcoldIconSet		= "Метка холода {rt%d} установлена на: %s",
-	PcoldIconRemoved	= "Метка холода снята с: %s"
+	PcoldIconRemoved	= "Метка холода снята с: %s",
+	Phase3				= "Стая поглотит вас!"
+	
 }
 
 L:SetOptionLocalization{
 	WarnEmerge				= "Предупреждение о появлении",
 	WarnEmergeSoon			= "Предупреждать заранее о появлении",
-	WarnSubmerge			= "Предупреждение о зарывании",
-	WarnSubmergeSoon		= "Предупреждать заранее о зарывании",
-	specWarnSubmergeSoon	= "Спец-предупреждение о скором зарывании",
+	WarnSubmerge			= "Предупреждение о закапывании",
+	WarnSubmergeSoon		= "Предупреждать заранее о закапывании",
+	specWarnSubmergeSoon	= "Спец-предупреждение о скором закапывании",
 	--SpecWarnPursue			= "Спец-предупреждение, когда вас преследуют",
 	warnAdds				= "Предупреждение о призыве помощников",
 	timerAdds				= "Отсчет времени до призыва помощников",
 	TimerEmerge				= "Отсчет времени до появления",
-	TimerSubmerge			= "Отсчет времени до зарывания",
+	TimerSubmerge			= "Отсчет времени до закапывания",
 	PlaySoundOnPursue		= "Звуковой сигнал, если вас преследуют",
 	PursueIcon				= "Устанавливать метки на преследуемых",
 	--SpecWarnShadowStrike	= "Спец-предупреждение для $spell:66134 (для прерывания)",
-	RemoveHealthBuffsInP3	= "Удалять усиления здоровья в начале фазы 3",
+	RemoveBuffs	= "Удалять бафы здоровья в начале фазы 3",
 	SetIconsOnPCold         = "Устанавливать метки на цели заклинания $spell:68510",
 	AnnouncePColdIcons		= "Объявлять метки целей заклинания $spell:68510 в рейд-чат\n(требуются права лидера или помощника)",
 	AnnouncePColdIconsRemoved	= "Объявлять также о снятии меток с целей заклинания $spell:68510\n(требуется предыдущая опция)"

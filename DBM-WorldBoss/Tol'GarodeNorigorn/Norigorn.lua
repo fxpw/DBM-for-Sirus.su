@@ -1,7 +1,7 @@
-local mod	= DBM:NewMod("Norigorn", "DBM-Tol'Garod")
+local mod	= DBM:NewMod("Norigorn", "DBM-WorldBoss", 1)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20210501000000")
+mod:SetRevision(("20210501000000"):sub(12, -3))
 mod:SetCreatureID(70010)
 
 mod:RegisterCombat("combat", 70010)

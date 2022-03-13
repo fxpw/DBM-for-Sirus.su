@@ -215,7 +215,7 @@ L:SetMiscLocalization{
 	YellPhase2              = "Время пришло! Не щадите никого!",
 	YellPhase3              = "Вам не пора прятаться?",
 	TaintedElemental        = "Нечистый элементаль",
-	StaticIcon				= "Статический заряд {rt%d} установлен на %s"
+	StaticIcons	= "Статический заряд {rt%d} установлен на %s"
 }
 
 --Gorelac

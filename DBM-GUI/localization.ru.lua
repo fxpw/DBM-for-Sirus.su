@@ -17,8 +17,9 @@ L.TabCategory_Options	 	= "Общие параметры"
 L.TabCategory_WOTLK 		= "Гнев Короля Лича"
 L.TabCategory_BC 			= "Пылающий Легион"
 L.TabCategory_CLASSIC		= "Классическая игра"
+L.TabCategory_TolGarod      = "Тол'гарод"
 L.TabCategory_WORLD_BOSS    = "Мировые боссы"
-L.TabCategory_OTHER    		= "Другие боссы"
+L.TabCategory_OTHER    		= "Другое"
 
 L.BossModLoaded 			= "%s - статистика"
 L.BossModLoad_now 			= [[База данных для этих боссов не загружена.
@@ -365,7 +366,7 @@ L.ShowRespawn				= "Отсчет времени до появления босс
 L.ShowQueuePop				= "Отсчет оставшегося времени до принятия очереди (поиск группы,БГ и т.д.)"
 --
 L.Area_AutoLogging			= "Параметры автоматической записи"
-L.AutologBosses				= "Автоматически записывать бои с боссами используя журнал боя Blizzard (Требуется использовать /dbm pull перед боссами для совместимости с <a href=\"http://worldoflogs.com\">|cff3588ffworldoflogs.com|r</a>)"
+L.AutologBosses				= "Автоматически записывать бои с боссами используя журнал боя Blizzard (Требуется использовать /dbm pull перед боссами для совместимости)"
 L.AdvancedAutologBosses		= "Автоматически записывать бои с боссами используя Transcriptor"
 L.RecordOnlyBosses			= "Только записывать боссов (исключая весь мусор. Используйте '/ dbm pull' перед боссами, чтобы захватить поты предварительного натяжения)"
 L.LogOnlyNonTrivial			= "Записывать только бои с рейдовыми боссами (искл. 5 ппл)"
