@@ -4048,7 +4048,7 @@ do
 						addSpacer = true
 					else
 						lastButton = catbutton
-						if v.line then
+						if type(v) == "table" and v.line then
 							catbutton = catpanel:CreateLine(v.text)
 						elseif type(mod.Options[v]) == "boolean" then
 							if mod.Options[v .. "TColor"] then
